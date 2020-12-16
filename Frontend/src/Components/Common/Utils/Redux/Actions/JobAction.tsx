@@ -1,11 +1,10 @@
 import { ADD_CALL_ID, CLEAN_CALL_ID, ADD_DATA_ITEM_ID, CLEAN_DATA_ITEM_ID } from "./Types";
 
-
-export const addCallId = (callId: number, name: string) => {
+export const addCallId = (callId: number, callName: string) => {
     return {
         type: ADD_CALL_ID,
         callId: callId,
-        name: name
+        callName: callName
     };
 };
 

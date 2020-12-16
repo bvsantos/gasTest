@@ -21,7 +21,7 @@ class DataItemDetails extends Component<DataItemStruct, DataItemStruct>{
         // mudar o service para retornar o nome do Sponsor
         var dataItemId = this.props.id;
         if (dataItemId !== null) {
-            axios.get(ServicePathsLabel.Api + ServicePathsLabel.DataItems + dataItemId)
+            axios.get(ServicePathsLabel.DataItems + dataItemId)
                 .then(response => {
                     console.log(response.data);
                     const dataItem = response.data;
@@ -44,7 +44,7 @@ class DataItemDetails extends Component<DataItemStruct, DataItemStruct>{
             type: this.state.type
         }
 
-        await axios.post(ServicePathsLabel.Api + ServicePathsLabel.DataItems, json)
+        await axios.post(ServicePathsLabel.DataItems, json)
             .then(response => {
                 console.log(response.data);
                 window.location.hash = PathsLabel.DataItems;
@@ -73,11 +73,11 @@ class DataItemDetails extends Component<DataItemStruct, DataItemStruct>{
                     <Form>
                         <Form.Group controlId="formBasicName">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" name="name" placeholder="Data Item's name" onChange={this.onChange} value={this.state.name}/>
+                            <Form.Control type="text" name="name" placeholder="Data Item's name" onChange={this.onChange} value={this.state.name} />
                         </Form.Group>
                         <Form.Group controlId="formBasicType">
                             <Form.Label>Type</Form.Label>
-                            <Form.Control type="text" name="description" placeholder="Data Item's type" onChange={this.onChange} value={this.state.type}/>
+                            <Form.Control type="text" name="description" placeholder="Data Item's type" onChange={this.onChange} value={this.state.type} />
                         </Form.Group>
                         <Row>
                             <Col>

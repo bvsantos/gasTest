@@ -27,7 +27,7 @@ class CallDetails extends Component<CallStruct, CallStruct>{
         // mudar o service para retornar o nome do Sponsor
         var callId = this.props.id;
         if (callId !== null) {
-            axios.get(ServicePathsLabel.Api + ServicePathsLabel.Calls + callId)
+            axios.get(ServicePathsLabel.Calls + callId)
                 .then(response => {
                     console.log(response.data);
                     const call = response.data;
@@ -62,7 +62,7 @@ class CallDetails extends Component<CallStruct, CallStruct>{
             closingDate: new Date(this.state.closingDate)
         }
 
-        await axios.post(ServicePathsLabel.Api + ServicePathsLabel.Calls, json)
+        await axios.post(ServicePathsLabel.Calls, json)
             .then(response => {
                 console.log(response.data);
                 window.location.hash = PathsLabel.Calls;

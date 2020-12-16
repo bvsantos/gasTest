@@ -26,7 +26,7 @@ class CallList extends Component<any, any>{
 
     /**Receives the list of calls */
     componentDidMount() {
-        var api = ServicePathsLabel.Api + ServicePathsLabel.Calls;
+        var api = ServicePathsLabel.Calls;
         // if student, api = getAtiveCalls
         axios(api)
             .then(response => {
@@ -49,7 +49,7 @@ class CallList extends Component<any, any>{
     }
 
     deleteCall = (id: Number) => async (event: React.MouseEvent) => {
-        await axios.delete(ServicePathsLabel.Api + ServicePathsLabel.Calls + id)
+        await axios.delete(ServicePathsLabel.Calls + id)
             .then(response => {
                 var newCalls = this.state.calls.filter((el: any) => el.id !== id);
                 this.setState({ calls: newCalls });

@@ -25,25 +25,43 @@ export default class Login extends Component<any, any>{
             password: this.state.password
         }
 
-        await axios.post(ServicePathsLabel.Api + ServicePathsLabel.Login, json)
-            .then(response => {
-                console.log(this.state.username)
-                console.log(this.state.username)
-                console.log(response.headers['authorization'])
-                //sessionStorage.setItem('token', response.headers.tokenID);
-            })
-            .catch(error => {
-                console.log("Error:" + error);
-            })
-            
+        fetch(ServicePathsLabel.Login, {
+            method: "POST",
+            body: JSON.stringify(json)
+        }).then(response => {
+            const auth: string = response.headers.get("Authorization")?.replace("Bearer", "")!;
+            console.log(auth)
+            sessionStorage.setItem('auth', auth);
+            // function that redirects the user depending of the role
+        }).catch(error => {
+            console.log(error)
+        })
+
     }
 
     async test() {
-        await axios.get("http://localhost:8080/applications/taste", {
+        console.log(sessionStorage.getItem('auth'));
+        var myHeaders = new Headers();
+        myHeaders.append('Authorization', sessionStorage.getItem('auth')!);
+
+        /*fetch("applications/taste", {
+            method: "GET",
+            headers: myHeaders
+        }).then(response => {
+            console.log(response)
+        }).catch(error => {
+            console.log("Error" + error)
+        })*/
+
+        await axios.get("/applications/taste", {
             headers: {
-                Authorization: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmUtYXBpIiwiYXVkIjoic2VjdXJlLWFwcCIsInN1YiI6ImZyZWRlcmljby5sb3BlczFAaG90bWFpbC5jb20iLCJleHAiOjE2MDg5MzE3NzgsInJvbCI6WyJST0xFX1JFR0lTVEVSRUQiLCJST0xFX1NUVURFTlQiXX0.6CarIPiB0BfBR0Yx7N7PV0ypBNI8j6AQgRHRMA4gVmBDgspnn_wxvozAzEQZNqqQ5hH4nurvH4k1M3xGXFTurA"
+                Authorization: sessionStorage.getItem('auth')
             }
-        });
+        }).then(response => {
+            console.log(response)
+        }).catch(error => {
+            console.log(error.response)
+        })
     }
 
     onChange(e: any) {
@@ -89,5 +107,4 @@ export default class Login extends Component<any, any>{
             </div>
         );
     }
-
 }

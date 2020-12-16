@@ -22,7 +22,7 @@ class DataItemsList extends Component<any, any>{
 
     /**Receives the list of calls */
     componentDidMount() {
-        axios(ServicePathsLabel.Api + ServicePathsLabel.DataItems)
+        axios(ServicePathsLabel.DataItems)
             .then(response => {
                 console.log(response.data);
                 this.setState({ dataItems: response.data, isLoading: false });
@@ -43,7 +43,7 @@ class DataItemsList extends Component<any, any>{
     }
 
     deleteDataItems = (id: Number) => async (event: React.MouseEvent) => {
-        await axios.delete(ServicePathsLabel.Api + ServicePathsLabel.DataItems + id)
+        await axios.delete(ServicePathsLabel.DataItems + id)
             .then(response => {
                 var newDataItems = this.state.dataItems.filter((el: any) => el.id !== id);
                 this.setState({ dataItems: newDataItems });

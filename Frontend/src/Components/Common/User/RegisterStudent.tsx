@@ -35,7 +35,7 @@ export default class Register extends Component<any, any>{
             password: this.state.password
         }
 
-        await axios.post(ServicePathsLabel.Api + ServicePathsLabel.Students, json)
+        await axios.post(ServicePathsLabel.Students, json)
             .then(response => {
                 console.log(response);
                 window.location.hash = PathsLabel.Login;

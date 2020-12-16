@@ -19,7 +19,7 @@ class PanelDetails extends Component<PanelStruct, PanelStruct>{
     componentDidMount() {
         // mudar o service para retornar o nome do Sponsor
         var callId = this.props.id;
-        axios.get(ServicePathsLabel.Api + ServicePathsLabel.Calls + SubServicesLable.Panels + callId)
+        axios.get(ServicePathsLabel.Calls + SubServicesLable.Panels + callId)
             .then(response => {
                 console.log(response.data);
                 const panel = response.data;
@@ -39,7 +39,7 @@ class PanelDetails extends Component<PanelStruct, PanelStruct>{
             name: this.state.name
         }
 
-        axios.post(ServicePathsLabel.Api + ServicePathsLabel.Calls + SubServicesLable.Panels, json)
+        axios.post(ServicePathsLabel.Calls + SubServicesLable.Panels, json)
             .then(response => {
                 console.log(response.data);
                 //window.location.hash = PathsLabel.Calls;
@@ -65,7 +65,7 @@ class PanelDetails extends Component<PanelStruct, PanelStruct>{
                     <Form>
                         <Form.Group controlId="formBasicName">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" name="name" placeholder="Panel's name" onChange={this.onChange} value={this.state.name}/>
+                            <Form.Control type="text" name="name" placeholder="Panel's name" onChange={this.onChange} value={this.state.name} />
                         </Form.Group>
                         <Row>
                             <Col>
